@@ -337,7 +337,7 @@ function ProductList({ onHomeClick }) {
           <div>
             {" "}
             <a href="#" onClick={(e) => handleCartClick(e)} style={styleA}>
-              <h1 className="cart">
+              <h2 className="cart">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 256 256"
@@ -358,8 +358,8 @@ function ProductList({ onHomeClick }) {
                     id="mainIconPathAttribute"
                   ></path>
                 </svg>
-                🛒 ({calculateTotalQuantity()})
-              </h1>
+                {calculateTotalQuantity()}
+              </h2>
             </a>
           </div>
         </div>
@@ -407,9 +407,10 @@ function ProductList({ onHomeClick }) {
                         {/* Display plant cost */}
                         <button
                           className="product-button"
-                          onClick={() => handleAddToCart(plant)} // Handle adding plant to cart
+                          onClick={() => handleAddToCart(plant)}
+                          disabled={!!addedToCart[plant.name]} // disable if product is added
                         >
-                          Add to Cart
+                          {addedToCart[plant.name] ? "Added" : "Add to Cart"}
                         </button>
                       </div>
                     )
